@@ -74,7 +74,7 @@ def user_login(request):
                 return HttpResponse('Invalid login')
     else:
         form = LoginForm()
-    return render(request, 'Registration/login.html', {'form': form})
+    return render(request, 'registration/login.html', {'form': form})
 
 
 from django.contrib.auth.decorators import login_required
@@ -138,12 +138,12 @@ def register(request):
             new_user.save()
             Profile.objects.create(user=new_user)
             return render(request,
-                          'Registration/register_done.html',
+                          'registration/register_done.html',
                           {'new_user': new_user})
     else:
         user_form = UserRegistrationForm()
     return render(request,
-                  'Registration/register.html',
+                  'registration/register.html',
                   {'user_form': user_form})
 
 
