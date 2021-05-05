@@ -279,12 +279,8 @@ class Sales(PermissionRequiredMixin, generic.ListView):
         labels.append(order.delivery_pref)
         data.append(order.get_total_cost().real.real)
 
-    totalSales = 0
     for d in data:
-        totalSales = Sum(data)
-    print(totalSales)
-
-    """THis is a comment"""
+        totalSales = sum(data)
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(Sales, self).get_context_data(**kwargs)
