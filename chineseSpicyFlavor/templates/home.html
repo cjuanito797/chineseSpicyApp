@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="../static/css/main.css">
+    <title>Chinese Spicy Flavor</title>
+    <style>
+        footer {
+            position: absolute;
+            color: #fff;
+            bottom: 0;
+            width: 100%;
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+            background-color: #000;
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="header">
+    <img align="left" src="../static/images/logo_home.PNG" height="400" width="490">
+
+</header>
+
+
+<div class="home">
+    <div class="ChPicture"></div>
+
+</div>
+<div class="row">
+    <div class="left">
+        <h2>Search</h2>
+
+        <input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Searching..." title="Search bar">
+        <ul id="myMenu">
+            <li><a href="{% url 'chineseSpicyFlavor:product_list' %}">Foods</a></li>
+            <li><a href="{% url 'chineseSpicyFlavor:home' %}">Home</a></li>
+            <li><a href="{% url 'chineseSpicyFlavor:about' %}">About</a></li>
+            <li><a href="{% url 'chineseSpicyFlavor:product_list' %}">Order Now</a></li>
+            <li><a href="{% url 'chineseSpicyFlavor:register' %}">Sign Up</a></li>
+            <li><a href="{% url 'chineseSpicyFlavor:user_login' %}">Login</a></li>
+        </ul>
+    </div>
+
+    <div class="right">
+        <h2>Welcome to Chinese Spicy Flavor</h2>
+        <p>Welcome to Chinese Spicy Flavor Chinese restaurant!</p>
+        <p>It's my great honor to serve you. Here, I guarantee you can taste the best Chinese cuisine in the world.</p>
+        <P>In order to facilitate your ordering, we set up a search bar and a navigation bar on the left.</P>
+        <p>You can use the search bar and the navigation bar to go to any page you want.</p>
+        <P>I strongly recommend that you register an account first so that you can order food in the future.</P>
+        <P>Enjoy and stay safe!</P>
+    </div>
+
+    <script type="text/javascript">
+        function myFunction() {
+            var input, filter, ul, li, a, i;
+
+            input = document.getElementById("mySearch");
+            filter = input.value.toUpperCase();
+            ul = document.getElementById("myMenu");
+            li = ul.getElementsByTagName("li");
+
+            for (i = 0; i < li.length; i++) {
+                a = li[i].getElementsByTagName("a")[0];
+                if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    li[i].style.display = "";
+                } else {
+                    li[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+
+</div>
+
+<div class="footer">
+    <footer>Contact Phone number: 402-123-4567 / Pick-up Address: 6001 UNO Plaza, Omaha, NE
+    </footer>
+</div>
+
+</body>
+
+
+</html>

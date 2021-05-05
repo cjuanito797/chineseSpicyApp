@@ -1,0 +1,55 @@
+{% extends "shop/base.html" %}
+
+{% block title %}
+    Checkout
+{% endblock %}
+
+{% block content %}
+    <h1>Checkout</h1>
+
+    <div class="order-info">
+        <h3>Your order</h3>
+        <ul>
+            {% for item in cart %}
+                <li>
+                    {{ item.quantity }}x {{ item.product.name }}
+                    <span>${{ item.total_price }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+        <p>Total: ${{ cart.get_total_price }}</p>
+    </div>
+
+    <form method="POST" class="post-form">
+        {% csrf_token %}
+        {% for a in addresses %}
+            <div class="addressListing">
+                <input type="radio" id="address_{{ a.id }}" name="address" value="{{ a.id }}">
+                <label for="address_{{ a.id }}"></label>
+
+                <p>{{ a.streetNum }}</p>
+                <p>{{ a.state }}</p>
+                <p>{{ a.zipcode }}</p>
+                <p>{{ a.city }}</p>
+            </div>
+        {% endfor %}
+
+        {% if addresses.count > 0 %}
+            <p><input type="submit" name="place_order" value="Place order"></p>
+        {% endif %}
+
+        {% ifequal addresses.count  0 %}
+            <!-- Add an add address button -->
+            <p>It appears that you don't have an address on file. Add an address or select "Pickup" to continue.</p>
+            <u><a href="{% url 'chineseSpicyFlavor:address_new' %}">Add Address</a></u>
+        {% endifequal %}
+
+
+        <p><input type="submit" name="pickup_order" value="Pickup"></p>
+
+
+    </form>
+
+
+
+{% endblock %}
