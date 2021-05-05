@@ -31,7 +31,15 @@ class Order(models.Model):
                                 blank=True,
                                 null=True,
   )
+    class Meta:
+        ordering = ('-created',)
+        unique_together = (("profile", "id", "created"),)
 
+    def __str__(self):
+        return f'{self.id}'
+
+    def get_total_cost(self):
+        return sum(item.get_cost() for item in self.items.all())
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order,
