@@ -23,7 +23,7 @@ class Order(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     paid = models.BooleanField(default=False)
-    braintree_id = models.CharField(max_length=150, blank=True, default=None)
+    braintree_id = models.CharField(max_length=150, blank=True)
     DELIVERY_CHOICES = (("DELIVERY", 'Delivery'), ("PICKUP", 'Pickup'))
     delivery_pref = models.CharField(max_length=10, choices=DELIVERY_CHOICES, default="Pickup")
     address = models.ForeignKey(Address,
