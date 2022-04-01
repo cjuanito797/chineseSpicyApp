@@ -81,7 +81,4 @@ class Product(models.Model):
                        args=[self.id, self.slug])
 
 
-class Customer(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=20, default="null")
-    email = models.EmailField(default="null")
+

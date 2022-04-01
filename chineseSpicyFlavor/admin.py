@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, Customer, Category, Profile, Address
+from .models import Product, Category, Profile, Address
 
 # Register your models here.
 @admin.register(Address)
@@ -29,6 +29,3 @@ class ProductAdmin(admin.ModelAdmin):
     list_editable = ['price', 'available']
     prepopulated_fields = {'slug': ('name',)}
 
-@admin.register(Customer)
-class CustomerAdmin(admin.ModelAdmin):
-    list_display = ['name', 'email']
